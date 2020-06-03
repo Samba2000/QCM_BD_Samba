@@ -1,0 +1,98 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    background-image: url(../image/facade.jpg);
+    border-radius: 5px;
+    width: 600px;
+    height: 400px;
+}
+h2{
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.form{
+    padding: 30px 40px;
+    height: 400px;
+}
+.form-control{
+    margin-bottom: 16%;
+    padding-bottom: 20px;
+    position: relative;
+}
+.form-control label{
+    display: block;
+    margin-bottom: 15px;
+}
+.form-control input{
+    border: 2px solid gray;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+.form-control input:focus{
+    outline: 0;
+    border-color: #777;
+}
+.form button{
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 40%;
+}
+.form a{
+    float: right;
+    margin-top: -10%;
+    font-size: 30px;
+    color: blue;
+    border-radius: 5px;
+}
+@media screen and (max-width: 560px){
+    .body{
+        display: block;
+    }
+    .header{
+        width: 100%;
+    }
+    .header-text{
+        width: 100%;
+        text-align: center;
+    }
+    .logo {
+        height: 90px;
+        width: 20%;
+        margin-left: 30px;
+        background-repeat: no-repeat;
+    }
+    .container{
+        width: 400px;
+        height: 400px;
+    }
+    .form{
+        width: 400px;
+        height: 400px;
+    }
+    .form-control{
+        margin-bottom: 25%;
+        padding-bottom: 15px;
+    }
+    .form a{
+        font-size: 20px;
+        color: blue;
+    }
+}
+.erreur-message{
+    color: red;
+    display: none;
+}
