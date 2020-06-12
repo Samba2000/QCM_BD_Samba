@@ -21,7 +21,9 @@
             background-image: url(../image/facade.jpg);
             border-radius: 5px;
             width: 90%;
-            height: 500px;
+            height: 550px;
+            margin-left: 5%;
+            margin-top: -10%;
         }
         h2{
             text-align: center;
@@ -31,6 +33,7 @@
         }
         .form{
             margin-top: -10px;
+            margin-left: 3%;
             padding: 30px 40px;
             height: 400px;
         }
@@ -78,8 +81,8 @@
             border-radius: 5px;
         }
         .home{
-        margin-left: 70%;
-        margin-top: -30%;
+        margin-left: 65%;
+        margin-top: -20%;
         }
         .home img{
         margin-top: -10%; 
@@ -139,8 +142,61 @@
           }
         }
     </style>
-    <script type="text/javascript"src="../js/jquery.js"></script>
-    <script>
+</head>
+<body>
+    <div class="container">
+        <form class="form" id="form" method="post" action="">
+        <h2>BIENVENUE SUR LA PAGE D'INSCRIPTION DU JOUEUR</h2>
+            <div class="form-control">
+                <label for="prenom">Prenom</label>
+                <input type="text" id="prenom" name="prenom"
+                placeholder="Entrer ton prenom">
+                 <span class="erreur-message" id="prenom-erreur"></span>
+            </div>
+            <div class="form-control">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom"
+                placeholder="Entrer ton nom">
+                 <span class="erreur-message" id="nom-erreur"></span>
+            </div>
+            <div class="form-control">
+                <label for="login">Login</label>
+                <input type="text" id="login" name="login"
+                placeholder="Entrer ton login">
+                <span class="erreur-message" id="login-erreur"></span>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"
+                placeholder="Entrer ton password">
+                 <span class="erreur-message" id="password-erreur"></span>
+            </div>
+            <div class="form-control">
+                <label for="password2">Confirmation Password</label>
+                <input type="password" id="password2" name="password2"
+                placeholder="confirmer ton password">
+                 <span class="erreur-message" id="conf-erreur"></span>
+            </div> <br>
+            Choisir un fichier : <input type="file" accept="image/*" onchange="loadFile(event)">
+            <button type="submit" name="btn_submit">Creer Un Compte</button>
+            </form>
+            <div class="home">
+            <img id="output"/>
+              <h3>Avatar Joueur</h3>
+              <script>
+                var loadFile = function(event) {
+                  var reader = new FileReader();
+                  reader.onload = function(){
+                    var output = document.getElementById('output');
+                    output.src = reader.result;
+                  };
+                  reader.readAsDataURL(event.target.files[0]);
+                };
+              </script>
+            </div>
+    </div>
+</body>
+<script>
       $(function() {
         $("#prenom-erreur").hide();
         $("#nom-erreur").hide();
@@ -278,82 +334,24 @@
           }
         }
 
-        form.addEventListener('submit',(e)=> {
-            
-          e.preventDefault();
-          erreur_prenom = false;
-          erreur_nom = false;
-          erreur_conf = false;
-          erreur_login = false;
-          erreur_password = false; 
-
-          check_prenom();
-          check_nom();
-          check_login();
-          check_password();
-          check_conf();
-
-          if(erreur_login == false && erreur_password == false && erreur_nom == false && erreur_prenom == false && erreur_conf == false){
-            return true;
-          }else{
-            return false;
-          }
-
+        $('#form').submit(function(){
+          login = $(this).find('input[name=login]').val();
+          password = $(this).find('input[name=password]').val();
+          prenom = $(this).find('input[name=prenom]').val();
+          nom = $(this).find('input[name=nom]').val();
+          password2 = $(this).find('input[name=password2]').val();
+          $.post('php/verifier.php', {prenom: prenom, nom: nom, login: login, password: password, password2: password2}, function(data){
+            if(data == 'echec')
+            {
+              alert('Ce Login existe déjà');
+            }
+            else
+            {
+              alert('Vous etes inscris maintenant');
+            }
+          });
+          return false;
         });
-      });
-    </script>
-</head>
-<body>
-    <div class="container">
-        <form class="form" id="form" method="post">
-            <h2>BIENVENUE SUR LA PAGE D'INSCRIPTION DU JOUEUR</h2>
-            <div class="form-control">
-                <label for="prenom">Prenom</label>
-                <input type="text" id="prenom"
-                placeholder="Entrer ton prenom">
-                 <span class="erreur-message" id="prenom-erreur"></span>
-            </div>
-            <div class="form-control">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom"
-                placeholder="Entrer ton nom">
-                 <span class="erreur-message" id="nom-erreur"></span>
-            </div>
-            <div class="form-control">
-                <label for="login">Login</label>
-                <input type="text" id="login"
-                placeholder="Entrer ton login">
-                <span class="erreur-message" id="login-erreur"></span>
-            </div>
-            <div class="form-control">
-                <label for="password">Password</label>
-                <input type="password" id="password"
-                placeholder="Entrer ton password">
-                 <span class="erreur-message" id="password-erreur"></span>
-            </div>
-            <div class="form-control">
-                <label for="password2">Confirmation Password</label>
-                <input type="password" id="password2"
-                placeholder="confirmer ton password">
-                 <span class="erreur-message" id="conf-erreur"></span>
-            </div> <br>
-            Choisir un fichier : <input type="file" accept="image/*" onchange="loadFile(event)">
-            <button type="submit" name="btn_submit">Creer Un Compte</button>
-            <div class="home">
-            <img id="output"/>
-              <h3>Avatar Joueur</h3>
-              <script>
-                var loadFile = function(event) {
-                  var reader = new FileReader();
-                  reader.onload = function(){
-                    var output = document.getElementById('output');
-                    output.src = reader.result;
-                  };
-                  reader.readAsDataURL(event.target.files[0]);
-                };
-              </script>
-            </div>
-        </form>
-    </div>
-</body>
+    });
+</script>
 </html>

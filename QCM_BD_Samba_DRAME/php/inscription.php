@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" contente="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <style>
         *{
@@ -24,12 +24,12 @@
             margin-left: 30px;
             background-repeat: no-repeat;
         }
-        .content {
+        .contente {
             background-image: url(../image/turkey.jpg);
             background-size: cover;
             background-repeat: no-repeat;
-            height: 580px;
-            margin-top: -1%;
+            height: 600px;
+            margin-top: -5%;
         }
         .header-text {
             color: white;
@@ -51,7 +51,7 @@
 <div class="logo"></div>
 <div class="header-text">Le Plaisir De Jouer</div>
 </div>
-<div class="content">
+<div class="contente">
 <?php require_once('ins.php')?>
 </div>
 </body>

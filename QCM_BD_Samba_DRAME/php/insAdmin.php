@@ -32,8 +32,7 @@
             padding: 30px 40px;
         }
         .form-control{
-            padding-bottom: 2px;
-            margin-bottom: 2px;
+           
             position: relative;
         }
         .form-control img{
@@ -99,13 +98,6 @@
         $("#login-erreur").hide();
         $("#password-erreur").hide();
         $("#conf-erreur").hide();
-
-        var erreur_prenom = false;
-        var erreur_nom = false;
-        var erreur_login = false;
-        var erreur_password = false;
-        var erreur_conf = false;
-
 
         $("#prenom").focusout(function(){
 
@@ -230,27 +222,28 @@
           }
         }
 
-        form.addEventListener('submit',(e)=> {
-            
-          e.preventDefault();
-          erreur_prenom = false;
-          erreur_nom = false;
-          erreur_conf = false;
-          erreur_login = false;
-          erreur_password = false; 
-
-          check_prenom();
-          check_nom();
-          check_login();
-          check_password();
-          check_conf();
-
-          if(erreur_login == false && erreur_password == false && erreur_nom == false && erreur_prenom == false && erreur_conf == false){
-            return true;
+        $('#form').submit(function(){
+          login = $(this).find('input[name=login]').val();
+          password = $(this).find('input[name=password]').val();
+          prenom = $(this).find('input[name=prenom]').val();
+          nom = $(this).find('input[name=nom]').val();
+          password2 = $(this).find('input[name=password2]').val();
+          if(login=='' || password=='' || prenom=='' || nom=='' || password2==''){
+            alert('Remplissez tous les champs');
+            return false;
           }else{
+            $.post('php/verifierAdmin.php', {prenom: prenom, nom: nom, login: login, password: password, password2: password2}, function(data){
+              if(data == 'echec')
+              {
+                alert('Ce Login existe déjà');
+              }
+              else
+              {
+                alert('Vous etes inscris maintenant');
+              }
+            });
             return false;
           }
-
         });
       });
     </script>
@@ -261,31 +254,31 @@
             <h4>BIENVENUE SUR LA PAGE D'INSCRIPTION ADMIN</h4>
             <div class="form-control">
                 <label for="prenom">Prenom</label>
-                <input type="text" id="prenom"
+                <input type="text" id="prenom" name="prenom"
                 placeholder="Entrer ton prenom">
                  <span class="erreur-message" id="prenom-erreur"></span>
             </div>
             <div class="form-control">
                 <label for="nom">Nom</label>
-                <input type="text" id="nom"
+                <input type="text" id="nom" name="nom"
                 placeholder="Entrer ton nom">
                  <span class="erreur-message" id="nom-erreur"></span>
             </div>
             <div class="form-control">
                 <label for="login">Login</label>
-                <input type="text" id="login"
+                <input type="text" id="login" name="login"
                 placeholder="Entrer ton login">
                 <span class="erreur-message" id="login-erreur"></span>
             </div>
             <div class="form-control">
                 <label for="password">Password</label>
-                <input type="password" id="password"
+                <input type="password" id="password" name="password"
                 placeholder="Entrer ton password">
                  <span class="erreur-message" id="password-erreur"></span>
             </div>
             <div class="form-control">
                 <label for="password2">Confirmation Password</label>
-                <input type="password" id="password2"
+                <input type="password" id="password2" name="password2"
                 placeholder="confirmer ton password">
                  <span class="erreur-message" id="conf-erreur"></span>
             </div> 
@@ -306,6 +299,6 @@
               </script>
             </div>
         </form>
-    </div>
+  </div>
 </body>
 </html>

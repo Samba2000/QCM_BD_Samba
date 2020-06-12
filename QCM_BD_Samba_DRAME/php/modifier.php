@@ -1,75 +1,93 @@
+<?php include 'dbconn.php'?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
-	<style>
-	textarea{
-		border-radius: 10px;
-		margin-left: 48%;
-		display: block;
-		text-align: center;
-	}
-	input{
-		border-radius: 5px;
-		float: right;
-		height: 40px;
-		width: 100px;
-		margin-right: 28%;
-		margin-top: 10%;
-		background-color: #01FEEF;
-	}
-	.day{
-		width: 400px;
-		margin-left: 20%;
-	}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/jquery.js"></script>
+  <style>
+		table{
+            width: 100%;
+        }
+        td{
+			text-align: center;
+		}
+        .fort{
+            margin-bottom: 2%; margin-left: 2%; margin-top: 1%; float: left;
+        }
+        .form-controle{
+            width: 500px; height: 50px; border-radius: 5px; text-align: center;
+        }
+        button{
+            background-color: green; height: 40px; width: 150px; border-radius: 5px; margin-left: 5%;
+        }
 	</style>
+  <title>Modificationt</title>
 </head>
 <body>
-	<div class="day">
-<h1> Nbre de questions/Jeu </h1>
-<form method="POST" action="">
-		<textarea name="nombre" id="nombre" cols="8" rows="3" ></textarea>
-		<input type="submit" name="valider" id="valider" value="Enregistrer"> <br/>
-		<span id="miss"></span>
-</form>
-	</div>
-<script>
-var nb = document.getElementById('nombre');
-var ok = document.getElementById('valider');
-var miss = document.getElementById('miss');
-ok.addEventListener('click', valider);
-function valider(e)
-{
-	if(nb.value=='')
-	{
-		e.preventDefault();
-		nb.style.border="2px solid red";
-	}
-	else if(nb.value<5)
-	{
-		e.preventDefault();
-		miss.textContent = "Le nombre doit etre supérieur à 5";
-		miss.style.color = "orange";
-	}
-}
-</script>
-<?php 
-if(!empty($_POST['nombre']))
-{
-    $nombre=file_get_contents("./asset/json/nombre.json");
-    $nombre=json_decode($nombre, true);
+  <div class="cont">
+    <table border="5px">
+      <thead>
+        <tr>
+          <th>Nombre de Questions par jeu</th>
+          <th>Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+          <?php 
+            $table = $dbconn->prepare("SELECT * FROM nombre");
+            $table->execute();
+            /* Fetch all of rows in the result set */
+            $result = $table->fetchAll();
 
-            $membres_Admin['nombre'] = $_POST['nombre'];
+            foreach($result as $row){  ?>
+             <tr id="<?php echo $row['nombre']; ?>">
+              <td data-target="nombre"><?php echo $row['nombre']; ?></td>
+              <td><a href="#" data-role="modifier" data-id="<?php echo $row['nombre']; ?>">Modifier</a></td>
+             </tr>
+          <?php  }
+          ?>
+      </tbody>
+    </table>
+  </div>
 
-            $nombre = $membres_Admin;
-
-            $nombre = json_encode($nombre);
-            
-            file_put_contents("./asset/json/nombre.json", $nombre);
-            
-            echo "<h2> Nombre de Question modifiée</h2>";
-
-}
-?>
+             <form action="" method="post" id="form">
+              <div class="form-group">
+                  <div class="fort">
+                    <b>Nombre De Questions Par Jeu</b>
+                    <input type="text" name="nombre" id="nombre" value="<?php echo $row['nombre']; ?>" class="form-controle">
+                  </div>
+                  <input type="hidden" name="id" id="id" value="<?php echo $row['nombre']; ?>" class="form-control">
+                <button type="submit">Enregistrer</button>
+              </div>
+             </form>
 </body>
-</html> 
+
+<script>
+  $(document).ready(function(){
+    $(document).on('click', 'a[data-role=modifier]',function(){
+      var id = $(this).data('id');
+      var nombre = $('#'+id).children('td[data-target=nombre]').text();
+      $('#nombre').val(nombre);
+      $('#id').val(id);
+
+    });
+      $('#form').submit(function(){
+          nombre = $('#nombre').val();
+		  id = $('#id').val();
+          if(nombre ==''){
+            alert('Remplissez le champ');
+            return false;
+          }else{
+            $.post('php/fixe.php', {nombre: nombre, id: id}, function(data){
+                if(data=='ok'){
+					$('#'+id).children('td[data-target=nombre]').text(nombre);
+				}
+            });
+          }
+            return false;
+      });
+  });
+</script>
+
+</html>

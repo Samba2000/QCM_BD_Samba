@@ -1,3 +1,4 @@
+<?php include 'dbconn.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,14 +52,14 @@
       font-weight: bold;
     }
     .affiche{
-      width: 700px; background-color: #B8B8B8; margin-right: 1%; border-radius: 5px; height: 450px; float: right; margin-top: -10%;
+      width: 700px; background-color: #B8B8B8;  border-radius: 5px; height: 450px; float: right; margin-top: -10%; margin-left: 2%;
     }
     .row{
       background-color: #FFFFFF; width: 85%; height: 480px; margin-top: 1%; border-radius: 10px; margin-left: 8%;
     }
     .accueil{
       margin-left: 1%;
-      margin-top: -3%;
+      margin-top: 1%;
     }
     .content h1{
       margin-top: 1%;
@@ -81,8 +82,12 @@
       height: 55px;
     }
     .Ams a{
-      text-align: center; text-decoration: none;
+      text-align: center; text-decoration: none; cursor: pointer;
     }
+    .Ams a:hover{
+            color: orangered;
+            border-bottom: 2px solid gold;
+        }
     @media screen and (max-width: 1160px){
       .body{
         display: block;
@@ -236,14 +241,26 @@
         border-radius: 10px;
     }
   </style>
+  <script>
+    $('.score').click(function(e){
+    if(e.target.id === 'top'){
+        $('#M').load('php/top.php');
+    }else if(e.target.id === 'meilleur'){
+        $('#M').load('php/resultat.php');
+    }
+});
+$(document).ready(function(){
+  ('#affiche').load('teste.php');
+});
+  </script>
 </head>
 <body>
     <div class="content">
         <div class="haed">
             <h1>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GENERALE</h1>
-            <h2>Deconnexion</h2>
+            <a href="#" class="deconnexion" id="deconnexion">Deconnexion</a>
         </div>
-            <div class="row">.
+            <div class="row">
                 <div class="accueil">
                         <div class="homes">
                             <div class="home">
@@ -251,37 +268,79 @@
                             </div>
                             <div class="samb">
                                 <h2>VOTRE SCORE</h2>
-                                <input type="text">
+                                <?php if(!isset($_SESSION['scores'])){ $_SESSION['scores']=0; } echo ($_SESSION['scores']).' points'; ?>
                             </div>
                             <h3>Ssssss <br> Dddddd</h3>
                         </div>
                         <div class="subs-menu">
                             <div class="Ams">
-                            <a href="index.php?lien=jeux&noms=1">TOP SCORE</a>
+                            <a href="#" id="top" class="score">TOP SCORE</a>
                             </div>
                             <div class="Ams">
-                                <a href="index.php?lien=jeux&noms=2">MON MEILLEUR SCORE</a>
+                                <a href="#" id="meilleur" class="score">MON MEILLEUR SCORE</a>
                             </div>
-                            <div class="M">
-                                <?php
-                                if (isset($_GET['noms'])) 
-                                {    		
-                                    if ($_GET['noms']=="1") {
-                                            require_once("top.php");
-                                        }
-                                        elseif($_GET['noms']=="2") 
-                                        {
-                                            include_once("resultat.php");
-                                        }
-                                    
-                                }
-                                ?>
+                            <div class="M" id="M">
+
                             </div>
                         </div>
                     </div>
-                <div class="affiche">
-                    <?php  
-                    ?>
+                <div class="affiche" id="affiche">
+                <?php ob_start();
+                $table = $dbconn->prepare("SELECT * FROM question");
+                $table->execute();
+                /* Fetch all of rows in the result set */
+                $data = $table->fetchAll();
+
+                $n = $dbconn->prepare("SELECT * FROM nombre");
+                $n->execute();
+                /* Fetch all of rows in the result set */
+                $_SESSION = $n->fetchAll();
+
+                //On définit le nombre d'éléments à afficher par page
+                $nbreParPage=1;
+                //Cette variable détermine la taille du tableau 
+                foreach($_SESSION as $row){
+                  $_SESSION['nombre']=$row['nombre'];
+                }
+                $nbreElement=$_SESSION['nombre'];
+                //Cette variable détermine le nombre de pages.
+                //La fonction ceil arrondit le nombre à l'entier supérieur
+                $nbreDePage=ceil($nbreElement/$nbreParPage);
+                    if(isset($_GET['page'])) // Si la variable $PageEncour existe...
+                    {
+                    $PageEncour=intval($_GET['page']); 
+                    
+                        if($PageEncour>$nbreDePage) 
+                        // Si la valeur de $pagencour (le numéro de la page) est plus grande que $nbreDePage...
+                        {
+                        $PageEncour=$nbreDePage;
+                        }
+                    }
+                    else // Sinon
+                    {
+                        $PageEncour=1; // La page actuelle est la n°1    
+                    }
+                    $indiceDebut=($PageEncour-1)*$nbreParPage; 
+                    $indiceFin= $PageEncour*$nbreParPage-1;
+
+                    for ($i=$indiceDebut; $i <= $indiceFin; $i++) 
+                    { 
+                        if (array_key_exists($i, $data)) 
+                        {
+                            
+                            if($data[$i]['typeQuestion']=='simple')
+                            {
+                              echo "Question ". $i.'/'.$_SESSION['nombre']."<br>";
+                              echo $data[$i]['question'].'<br>';
+                              echo $data[$i]['nbpoint']." pts <br>";
+                              echo $data[$i]['reponse'];                                          
+                              
+                            }
+                        }
+                    }      
+                ?>
+                </form>
+               
                 </div>
             </div>
     </div>

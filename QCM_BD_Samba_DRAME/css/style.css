@@ -45,17 +45,17 @@ h2{
 .form button{
     cursor: pointer;
     border-radius: 5px;
-    display: block;
     font-size: 16px;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 40%;
 }
-.form a{
+.link{
+    background-color: #777;
     float: right;
-    margin-top: -10%;
-    font-size: 30px;
     color: blue;
+    margin-top: 2%;
+    font-size: 30px;
     border-radius: 5px;
 }
 @media screen and (max-width: 560px){
@@ -87,7 +87,7 @@ h2{
         margin-bottom: 25%;
         padding-bottom: 15px;
     }
-    .form a{
+    .link{
         font-size: 20px;
         color: blue;
     }

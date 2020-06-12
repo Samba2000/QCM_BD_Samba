@@ -18,61 +18,61 @@
             text-decoration: none;
                 margin-left: 5%;
                 font-size: 25px;
+                color: black;
+                cursor: pointer;
+        }
+        .Am a:hover{
+            color: orangered;
+            border-bottom: 2px solid gold;
         }
         .alt{
-            margin-top: 0%;
+            margin-top: -5%;
         }
         .gor {
             height: 50px;
             width: 600px;
-            margin-top: ;
+            margin-top: -11%;
             float:left;
             margin-left: 6%;
             }
             .ho{
-                width: px;
+                width: 100%;
+                background-color: burlywood;
+                height: 450px;
+                border-radius: 10px;
             }
     </style>
+    <script>
+    $('.ajouter').click(function(e){
+    if(e.target.id === 'ajout'){
+        $('#ho').load('php/question.php');
+    }else if(e.target.id === 'modifie'){
+        $('#ho').load('php/modifiequestion.php');
+    }else if(e.target.id === 'sup'){
+        $('#ho').load('php/supquestion.php');
+    }else if(e.target.id === 'liste'){
+        $('#ho').load('php/creer_questions.php');
+    }
+});
+</script>
 </head>
 <body>
-<div class="alt">
-<div class="gor">
-          <div class="Am">
-           <a href="index.php?lien=accueil&nomv=1&nom=1">Ajouter</a>
-          </div>
-          <div class="Am">
-            <a href="index.php?lien=accueil&nomv=1&nom=2">Modifier</a>
-          </div>
-          <div class="Am">
-            <a href="index.php?lien=accueil&nomv=1&nom=3">Supprimer</a>
-          </div>
-          <div class="Am">
-            <a href="index.php?lien=accueil&nomv=1&nom=4">Liste</a>
-          </div>
-</div>
-<div class="ho">
-<?php   
-if (isset($_GET['nom'])) 
-    {    
-        if ($_GET['nom']=="1") 
-        {
-            include_once("question.php");
-        }
-        elseif($_GET['nom']=="2") 
-        {
-            include_once("modifiequestion.php");
-        }
-        elseif($_GET['nom']=="3") 
-        {
-            include_once("supquestion.php");
-        }
-        elseif($_GET['nom']=="4") 
-        {
-            include_once("creer_questions.php");
-        }
-    }
-?>
-</div>
-</div>
+    <div class="gor">
+            <div class="Am">
+            <a href="#" class="ajouter" id="ajout">Ajouter</a>
+            </div>
+            <div class="Am">
+                <a href="#" class="ajouter" id="modifie">Modifier</a>
+            </div>
+            <div class="Am">
+                <a href="#" class="ajouter" id="sup">Supprimer</a>
+            </div>
+            <div class="Am">
+                <a href="#" class="ajouter" id="liste">Liste</a>
+            </div>
+    </div>
+    <div class="ho" id="ho">
+
+    </div>
 </body>
 </html>

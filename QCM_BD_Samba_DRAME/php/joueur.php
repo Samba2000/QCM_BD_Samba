@@ -7,7 +7,7 @@
     <style>
         .B {
                 width: 250px;
-                font-size: 24px;
+                font-size: 20px;
                 border: 2px solid gray;
                 border-radius: 5px ;
                 background-color: gray;
@@ -19,47 +19,51 @@
                 margin-left:20%;
                 font-size: 40px;
                 text-decoration: none;
+                color: black;
+                cursor: pointer;
+        }
+        .B a:hover{
+            color: orangered;
+            border-bottom: 2px solid gold;
         }
         .alert{
-            margin-top: 2%;
+            margin-top: -5%;
         }
         .As {
-            height: 50px;
+            height: 20px;
             width: 600px;
-            margin-top: ;
             float:left;
+            margin-top: -10%;
             margin-left: 6%;
             }
             .hose{
-                width: px;
+                width: 100%;
+                background-color: burlywood;
+                height: 450px;
+                border-radius: 10px;
             }
     </style>
+    <script>
+    $('.list').click(function(e){
+    if(e.target.id === 'list'){
+        $('#hose').load('php/Liste.php');
+    }else if(e.target.id === 'bloque'){
+        $('#hose').load('php/bloquer.php');
+    }
+});
+</script>
 </head>
 <body>
-<div class="alert">
-<div class="As">
-          <div class="B">
-           <a href="index.php?lien=accueil&nomv=3&name=1">Liste</a>
-          </div>
-          <div class="B">
-            <a href="index.php?lien=accueil&nomv=3&name=2">Bloquer</a>
-          </div>
-</div>
-<div class="hose">
-<?php   
-if (isset($_GET['name'])) 
-    {    
-        if ($_GET['name']=="1") 
-        {
-            include_once("Liste.php");
-        }
-        elseif($_GET['name']=="2") 
-        {
-            include_once("Bloquer.php");
-        }
-    }
-?>
-</div>
-</div>
+    <div class="As">
+            <div class="B">
+            <a href="#" class="list" id="list">Liste</a>
+            </div>
+            <div class="B">
+                <a href="#" class="list" id="bloque">Bloquer</a>
+            </div>
+    </div>
+    <div class="hose" id="hose">
+
+    </div>
 </body>
 </html>

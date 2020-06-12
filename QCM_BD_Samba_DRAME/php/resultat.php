@@ -16,9 +16,18 @@
 </head>
 <body>
 <table border="5px">
-	<td>Prenom</td>
-	<td>Nom</td>
-	<td>Score</td>
+      <thead>
+        <tr>
+          <th>Prenom</th>
+          <th>Nom</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+             <tr>
+             
+             </tr>
+      </tbody>
 </table>
 </body>
 </html>

@@ -1,107 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
-	<meta charset="utf-8">
-	<style>
-   .input1{
-    width:280px;
-    height:50px;
-    padding:5px;
-    margin:50px 0 10px;
-    border-radius:5px;
-    border:4px solid #acbfa5
-	}
-	.inputs{
-    width:150px;
-    height:40px;
-    background-color: #00BFFF;
-    border-radius:5px;
-    border:2px solid #00BFFF;
-    color:#fff;
-	}
-	.t{
-        border: 2px solid white;
-    background-color: silver;
-    width:400px;
-    height:50px;
-    margin: -10px;
-    border-radius:5px;
-    border:4px solid #acbfa5"
-    }
-    .samba{
-        width:400px;
-        float:left;
-    }
-    .te{
-        background-color: silver;
-        width:400px;
-        height:50px;
-        border-radius:5px;
-        border:4px solid #acbfa5"
-    }
-    .lab
-    {
-        font-size: 25px;
-     font-weight: bold;
-    }
-    .tes
-    {
-        background-color: silver;
-        width:200px;
-        height:40px;
-        border-radius:5px;
-        border:4px solid #acbfa5"
-    }
-    span
-    {
-        font-size: 25px;
-        font-weight: bold;
-        margin-left:25%;
-    }
-    .form{
-        margin-left: 10%;
-        height: 350px;
-    }
-    h3{
-        font-size: 22px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        textarea{
+            border-radius: 5px; background-color: whitesmoke; float: left; 
+        }
+        .form-control{
+            margin-bottom: 2%;
+        }
+        .conte{
+            width: 100%; 
+        }
+        b{
+            margin-left: 5%; margin-right: 2%; float: left; font-size: 30px; margin-top: 1%;
+        }
+        i{
+            font-size: 30px; font-weight: bold; margin-left: 15%;
+        }
+        select{
+            width:200px; height:40px; background-color:silver; 
+        }
+        .number{
+            width:100px; height:50px; background-color:silver; border-radius: 5px; 
+        }
+        .inputs{
+            width:150px; height:40px; background-color:green; float: right;
+        }
+        .te{
+         background-color: silver; width:200px; height:40px; border-radius:5px; border:4px solid #acbfa5"
+        }
+        .question{
+            width:350px; height:50px; background-color:silver; border-radius: 10px; 
+        }
+    </style>
 </head>
 <body>
-<form action="" id="mainform" method="POST" name="mainform" class="form">
-<h3><i>PARAMETRER VOTRE QUESTION</i></h3>
-	<div style=" float: left; margin-right:5%;"><h2>Question</h2></div>
-	<textarea name="question" rows="2" cols="60" class="t" id="question" required><?php  echo @$_POST['question'];?></textarea><span id="error1" ></span>
-	<div><h3>Nbre de Points</h3></div>
-	<div style="margin-left: 25%; margin-top: -18%;">
-    <input type="number" name="nbp" id="nbp" style=" width: 15%;background-color: silver;border: 2px solid white" class="input1" required><br></div>
-    <span id="error2" ></span>
-    <div  style=" margin-top: -5%"> 
-	<h3>Type de réponse</h3>
-    <div  style="margin-left:25%; margin-top: -8%">  
-    <select name="choix"  id="weather" style="width:200px; height:40px; background-color:silver" onclick="choix(this.value)" required >
-    <option value="">Donnez le type de réponse</option>
-    <option value="multiple">choix mutiple</option>
-    <option value="simple">choix simple</option>
-    <option value="texte">choix texte</option>
-    </select>
-    <div style=" float:right; margin-right:48%;">
-    <img src="image/ic-ajout-réponse.PNG" alt="image" onclick="Add()"></div>
-    </div>
-    <span id="error3" ></span>
-    </div>
-    <div>
-    <div id="inputs" class="samba">
-    </div>
-    <div style="float: right; margin-right:2%; margin-top: 12%;">
-        <input type="submit" class="inputs" id="button_envoi" value="Enregistrer" name="valider">
+<form action="" id="form" method="POST" name="mainform" class="forms">
+    <div class="conte">
+        <i>PARAMETRER VOTRE QUESTION</i>
+        <div class="form-contorl">
+            <b>Question</b>
+            <input name="question" class="question" id="question" placeholder="Question"><span id="error1" style="color: red;"></span>
+        </div>
+        <div class="form-control">
+            <b>Nbre de Points</b>
+            <input type="number" name="nbp" id="nbp" class="number" placeholder="Number">
+            <span id="error2" style="color: red;"></span>
+        </div>
+        <b>ID_USER</b><input type="number" name="id" id="nbp" placeholder="id_user" class="number">
+        <div class="form-control"> 
+            <b>Type de réponse</b>  
+            <select name="choix" id="weather" onclick="choix(this.value)">
+            <option value="">Donnez le type de réponse</option>
+            <option value="multiple">choix mutiple</option>
+            <option value="simple">choix simple</option>
+            <option value="texte">choix texte</option>
+            </select>
+            <span id="error3" ></span>
+            <img src="image/ic-ajout-réponse.PNG" alt="image" onclick="Add()">
+        </div>
+        <div id="inputs" class="samba">
+        </div>
+        <button type="submit" class="inputs">Enregistrer</button>
     </div>
 </form>
+
 <script>
+      $(function() {
+        $("#erro1").hide();
+        $("#error2").hide();
+        $("#error3").hide();
 
+        $("#question").focusout(function(){
 
-var nbsam = 0;
+            check_question();
+
+        });
+        $("#nbp").focusout(function(){
+
+            check_nbp();
+
+        });
+
+        function check_question(){
+          var question_length = $("#question").val().length;
+          if($("#question").val() == ''){
+            $("#error1").html('Veuillez entrer votre question');
+            $("#error1").show();
+          }
+          else if(!$("#question").val().match(/^[A-Z]{1}[a-z]+$/)){
+            $("#error1").html('Votre question doit commencé par un majuscule');
+            $("#error1").show();
+          }
+          else if(question_length < 2 || question_length > 50){
+            $("#error1").html('La question doit etre compris entre 2 et 50 caratères');
+            $("#error1").show();
+          }
+          else{
+            $("#error1").hide();
+            $("#question").css("border-color", "green");
+          }
+        }
+
+        function check_nbp(){
+          var nbp_length = $("#nbp").val().length;
+          var nbp = $('#nbp').val();
+          if($("#nbp").val() == ''){
+            $("#error2").html('Veuillez entrer le nombre de point');
+            $("#error2").show();
+          }
+          else if(!$("#nbp").val().match(/^[0-9]+$/)){
+            $("#error2").html('Votre nbp ne doit composé que des chiffres');
+            $("#error2").show();
+          }
+          else if(nbp < 1){
+            $("#error2").html('Le nbp doit etre supérieur ou égal à 1');
+            $("#error2").show();
+          }
+          else{
+            $("#error2").hide();
+            $("#nbp").css("border-color", "green");
+          }
+        }
+
+        $('#form').submit(function(){
+            question = $(this).find('input[name=question]').val();
+            nbp = $(this).find('input[name=nbp]').val();
+            choix = $(this).find('select[name=choix]').val();
+            reponse = $(this).find('input[name=reponse]').val();
+            id = $(this).find('input[name=id]').val();
+            if(question=='' || nbp=='' || choix=='' || reponse=='' || id==''){
+            alert('Remplissez tous les champs');
+            return false;
+          }else{
+                $.post('php/verifierquestion.php', {question: question, nbp: nbp, choix: choix, reponse: reponse, id: id}, function(data){
+                    if(data == 'ok'){
+                        alert('Question enregistrée');
+                    }else{
+                        alert('Question non enregistrée');
+                    }
+                });
+                return false;
+          }
+        });
+      });
+    </script>
+<script>
+        var nbsam = 0;
         function onAddInput()
         {
             nbsam++; 
@@ -111,7 +159,7 @@ var nbsam = 0;
             newInput.setAttribute('id', "sam_"+nbsam);
             newInput.innerHTML = `
             <label class="lab">Reponse `+nbsam+` </label>
-            <input type="text" class="te" name="reponse" required>
+            <input type="text" class="te" name="reponse">
             <input type="hidden" value="type texte" name="type">
            <img src="image/ic-supprimer.PNG" onclick="onDeleteInput(${nbsam})">
             `;
@@ -129,8 +177,8 @@ var nbsam = 0;
             newInput.setAttribute('id', "sam_"+nbsam);
             newInput.innerHTML = `
             <label class="lab">Reponse `+nbsam+` </label>
-            <input type="text" class="tes" name="reponse[]" required>
-            <input type="radio" value="${nbsam-1}" name="rep1[]" required>
+            <input type="text" class="te" name="reponse" required>
+            <input type="radio" value="${nbsam-1}" name="rep1[]">
             <input type="hidden" value="type radio" name="type">
            <img src="image/ic-supprimer.PNG" onclick="onDeleteInput(${nbsam})">
             `;
@@ -146,14 +194,14 @@ var nbsam = 0;
             newInput.setAttribute('id', "sam_"+nbsam);
             newInput.innerHTML = `
             <label class="lab">Reponse `+nbsam+` </label>
-            <input type="text" class="tes" name="reponse[]" required>
+            <input type="text" class="tes" name="reponse" required>
             <input type="checkbox" name="rep2[]" value="${nbsam-1}">
             <input type="hidden" value="type checkbox" name="type">
            <img src="image/ic-supprimer.PNG" onclick="onDeleteInput(${nbsam})">
             `;
         divInputs.appendChild(newInput);
         }
-function Add() {
+        function Add() {
     var select = document.getElementById('weather');
     if(select.value=='texte')
     {
@@ -167,8 +215,8 @@ function Add() {
     {
         return onAddcheckbox();
     }
-}
-function onDeleteInput(n)
+    }
+    function onDeleteInput(n)
     {
         var target = document.getElementById('sam_'+n);
             target.remove();
@@ -194,9 +242,5 @@ function onDeleteInput(n)
         },200)
     }    
 </script>
-
-
-
-</fieldset>
 </body>
 </html>

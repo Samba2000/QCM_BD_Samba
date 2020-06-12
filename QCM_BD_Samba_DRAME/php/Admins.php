@@ -18,54 +18,58 @@
             text-decoration: none;
                 font-size: 30px;
                 margin-left: 10%;
+                color: black;
+                cursor: pointer;
+        }
+        .ame a:hover{
+            color: orangered;
+            border-bottom: 2px solid gold;
         }
         .alet{
-            margin-top: 2%;
+            margin-top: -5%;
         }
         .gore {
             height: 50px;
             width: 600px;
-            margin-top: ;
+            margin-top: -11%;
             float:left;
             margin-left: 6%;
             }
             .hos{
-                width: px;
+                margin-top: 20%;
+                width: 100%;
+                background-color: burlywood;
+                height: 450px;
+                margin-top: -13%;
+                border-radius: 10px;
             }
     </style>
+    <script>
+    $('.Admin').click(function(e){
+    if(e.target.id === 'ajouter'){
+        $('#hos').load('php/inscriptionADMIN.php');
+    }else if(e.target.id === 'modifier'){
+        $('#hos').load('php/modifieAdmin.php');
+    }else if(e.target.id === 'lister'){
+        $('#hos').load('php/ListeAdmin.php');
+    }
+});
+</script>
 </head>
 <body>
-<div class="alet">
-<div class="gore">
-          <div class="ame">
-           <a href="index.php?lien=accueil&nomv=2&names=1">Ajouter</a>
-          </div>
-          <div class="ame">
-            <a href="index.php?lien=accueil&nomv=2&names=2">Modifier</a>
-          </div>
-          <div class="ame">
-            <a href="index.php?lien=accueil&nomv=2&names=3">Liste</a>
-          </div>
-</div>
-<div class="hos">
-<?php   
-if (isset($_GET['names'])) 
-    {    
-        if ($_GET['names']=="1") 
-        {
-            include_once("inscriptionADMIN.php");
-        }
-        elseif($_GET['names']=="2") 
-        {
-            include_once("modifieAdmin.php");
-        }
-        elseif($_GET['names']=="3")
-        {
-            include_once("ListeAdmin.php");
-        }
-    }
-?>
-</div>
-</div>
+    <div class="gore">
+            <div class="ame">
+            <a href="#" id="ajouter" class="Admin">Ajouter</a>
+            </div>
+            <div class="ame">
+                <a href="#" id="modifier" class="Admin">Modifier</a>
+            </div>
+            <div class="ame">
+                <a href="#" id="lister" class="Admin">Liste</a>
+            </div>
+    </div>
+    <div class="hos" id="hos">
+   
+    </div>
 </body>
 </html>

@@ -70,13 +70,17 @@
       margin-right: 60%;
     }
     .affiche{
-      width: 700px; background-color: #B8B8B8; margin-right: 1%; border-radius: 5px; height: 450px; float: right; margin-top: -9%;
+      width: 700px; background-color: #B8B8B8; border-radius: 5px; height: 450px; margin-left: 38%; margin-top: -9%;
     }
     .row{
       background-color: #FFFFFF; width: 85%; height: 480px; margin-top: 1%; border-radius: 10px; margin-left: 8%;
     }
     .accueil{
       margin-left: 1%;
+      margin-top: -0.5%;
+    }
+    .content{
+      margin-top: -2%;
     }
     .content h1{
       margin-top: 1%;
@@ -263,7 +267,7 @@
 <div class="content">
   <div class="haed">
   <h1>CREER ET PARAMETRER VOTRE QUIZZ</h1>
-  <h2>Deconnexion</h2>
+  <a href="#" class="deconnexion" id="deconnexion">Deconnexion</a>
   </div>
   <div class="row">
     .
@@ -279,41 +283,27 @@
     </div>
         <div class="sub-menu">
           <div class="A">
-           <a href="index.php?lien=accueil&nomv=1">Questions</a>
-            <img src="image/ic-liste-active.png">
+           <a href="#" id="question" class="admin">Questions</a>
+            <img src="image/ic-liste-active.png" alt="">
           </div>
           <div class="A">
-            <a href="index.php?lien=accueil&nomv=2">Admin</a>
-            <img src="image/ic-ajout-active.png">
+            <a href="#" id="admin" class="admin">Admin</a>
+            <img src="image/ic-ajout-active.png" alt="">
           </div>
            <div class="A">
-            <a href="index.php?lien=accueil&nomv=3">Joueurs </a>
-             <img src="image/ic-liste.png">
+            <a href="#" id="joueur" class="admin">Joueurs </a>
+             <img src="image/ic-liste.png" alt="">
           </div>
           <div class="A">
-            <a href="index.php?lien=accueil&nomv=4">NBRE Questions</a>
-             <img src="image/ic-ajout.png">
+            <a href="#" id="nbreq" class="admin">NBRE Questions</a>
+             <img src="image/ic-ajout.png" alt=""> 
           </div>
         </div>
-<div class="affiche">
-    <?php  
-    if (isset($_GET['nomv'])) 
-    	{    		if ($_GET['nomv']=="1") {
-    				include_once("fixe_modifie.php");
-    			}
-    			elseif($_GET['nomv']=="2") 
-    			{
-    				include_once("Admins.php");
-    			}
-    			elseif($_GET['nomv']=="3")
-    			{
-    				include_once('joueur.php');
-    			}
-    			elseif($_GET['nomv']=="4") 
-    			{
-    				include_once('nbreq.php');	
-    			}
-    }
-    ?>
+  <div class="affiche" id="affiche">
+  </div>
+</div>
+  </div>
+</div>
+<script src="js/admin.js"></script>
 </body>
 </html>
