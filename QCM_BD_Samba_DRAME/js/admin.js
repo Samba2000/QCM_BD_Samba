@@ -20,3 +20,8 @@ $('.admin').click(function(e){
         fileContentLoader(content, 'nbreq.php');
     }
 });
+$('.deconnexion').click(function(e){
+    if(e.target.id === 'deconnexion'){
+    $('#content').load('php/connexion.php');
+    }
+});

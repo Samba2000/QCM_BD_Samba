@@ -87,8 +87,12 @@
       float: left;
       margin-left: 20%;
     }
-    .content h2{
+    .haed a{
       margin-top: 1%;
+      padding-top: 0.5%;
+      padding-left: 0.5%;
+      width: 100px;
+      height: 30px;
       float: right;
       background-color: #0FD2ED;
       border-radius: 5px;
@@ -264,46 +268,46 @@
   </style>
 </head>
 <body>
-<div class="content">
-  <div class="haed">
-  <h1>CREER ET PARAMETRER VOTRE QUIZZ</h1>
-  <a href="#" class="deconnexion" id="deconnexion">Deconnexion</a>
-  </div>
-  <div class="row">
-    .
-  <div class="accueil">
-    <div class="homes">
-      <div class="home">
-          <?php  ?>
-      </div>
-      <div class="spans">
-          <span>Ssssss</span>
-          <span>Dddddd</span>
-      </div>
+  <div class="content">
+    <div class="haed">
+      <h1>CREER ET PARAMETRER VOTRE QUIZZ</h1>
+      <a href="#" class="deconnexion" id="deconnexion">Deconnexion</a>
     </div>
-        <div class="sub-menu">
-          <div class="A">
-           <a href="#" id="question" class="admin">Questions</a>
-            <img src="image/ic-liste-active.png" alt="">
-          </div>
-          <div class="A">
-            <a href="#" id="admin" class="admin">Admin</a>
-            <img src="image/ic-ajout-active.png" alt="">
-          </div>
-           <div class="A">
-            <a href="#" id="joueur" class="admin">Joueurs </a>
-             <img src="image/ic-liste.png" alt="">
-          </div>
-          <div class="A">
-            <a href="#" id="nbreq" class="admin">NBRE Questions</a>
-             <img src="image/ic-ajout.png" alt=""> 
-          </div>
+    <div class="row">
+      .
+    <div class="accueil">
+      <div class="homes">
+        <div class="home">
+            <?php  ?>
         </div>
-  <div class="affiche" id="affiche">
+        <div class="spans">
+            <span>Ssssss</span>
+            <span>Dddddd</span>
+        </div>
+      </div>
+          <div class="sub-menu">
+            <div class="A">
+            <a href="#" id="question" class="admin">Questions</a>
+              <img src="image/ic-liste-active.png" alt="">
+            </div>
+            <div class="A">
+              <a href="#" id="admin" class="admin">Admin</a>
+              <img src="image/ic-ajout-active.png" alt="">
+            </div>
+            <div class="A">
+              <a href="#" id="joueur" class="admin">Joueurs </a>
+              <img src="image/ic-liste.png" alt="">
+            </div>
+            <div class="A">
+              <a href="#" id="nbreq" class="admin">NBRE Questions</a>
+              <img src="image/ic-ajout.png" alt=""> 
+            </div>
+          </div>
+    <div class="affiche" id="affiche">
+    </div>
   </div>
-</div>
+    </div>
   </div>
-</div>
 <script src="js/admin.js"></script>
 </body>
 </html>

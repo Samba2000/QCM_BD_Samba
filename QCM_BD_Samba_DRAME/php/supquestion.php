@@ -6,20 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="js/jquery.js"></script>
   <style>
-		table{
-            width: 100%;
+          table{
+                width: 100%;
+            }
+            td{
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          text-align: center;
         }
-        td{
-			text-align: center;
-		}
+        .scroll{
+          max-height: 250px;
+          display: block;
+          overflow-y: auto;
+        }
+        .scroll td, .scrool th{
+          text-align: center;
+        }
+        tr:nth-child(event){background-color: #181b2f}
+        tr:nth-child(odd){background-color: gray}
         .fort{
             margin-bottom: 2%; margin-left: 2%; margin-top: 1%; float: left;
         }
         .form-controle{
-            width: 400px; height: 40px; border-radius: 5px;
+            width: 400px; height: 40px; border-radius: 5px; text-align: center;
         }
         .form-control{
-            width: 100px; height: 40px; border-radius: 5px;
+            width: 100px; height: 40px; border-radius: 5px; text-align: center;
         }
         button{
             background-color: green; height: 40px; width: 150px; border-radius: 5px; margin-left: 5%;
@@ -29,7 +41,7 @@
 </head>
 <body>
   <div class="cont">
-    <table border="5px">
+    <table border="5px" class="scroll">
       <thead>
         <tr>
           <th>ID</th>
@@ -86,7 +98,6 @@
               </div>
              </form>
 </body>
-
 <script>
   $(document).ready(function(){
     $(document).on('click', 'a[data-role=supprimer]',function(){
@@ -126,5 +137,4 @@
       });
   });
 </script>
-
 </html>

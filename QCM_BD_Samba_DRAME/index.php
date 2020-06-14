@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,16 +29,15 @@
       </script>
 </head>
 <body onload=showDate();>
-<div class="header">
-<div class="logo "></div>
-    <span style="background-color:#1C1C1C;color:silver;font-size:25px;"><?php $date = date('d/m/y'); echo $date; ?></span> <span id='horloge' style="background-color:#1C1C1C;color:silver;font-size:25px;"></span>
-<div class="header-text">Le Plaisir De Jouer</div>
-</div>
-<div class="content" id="content">
+    <div class="header">
+    <div class="logo "></div>
+        <span style="background-color:#1C1C1C;color:silver;font-size:25px;"><?php $date = date('d/m/y'); echo $date; ?></span> <span id='horloge' style="background-color:#1C1C1C;color:silver;font-size:25px;"></span>
+    <div class="header-text">Le Plaisir De Jouer</div>
+    </div>
+    <div class="content" id="content">
 
-</div>
-<script src="js/jquery.js"></script>
-<script src="js/script.js"></script>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
-

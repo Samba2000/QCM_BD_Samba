@@ -9,8 +9,21 @@
             width: 100%;
         }
         td{
+			width: 250px;
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          text-align: center;
+		}
+		.scroll{
+			max-height: 300px;
+			display: block;
+			overflow-y: auto;
+		}
+		.scroll td, .scrool th{
 			text-align: center;
 		}
+		tr:nth-child(event){background-color: #181b2f}
+		tr:nth-child(odd){background-color: gray}
 	</style>
 </head>
 <body>
@@ -18,7 +31,7 @@
 	<td><h3><i>LISTE DES JOUEURS PAR SCORE</i></h3></td>
 		
 </table>
-<table border="5px">
+<table border="5px" class="scroll">
 <tr>
         <th>PRENOM</th>
         <th>NOM</th>
@@ -41,5 +54,19 @@ $result = $sth->fetchAll();
 	  </tr>
 	<?php } ?>
 </table>
+<div class="demo" id="demo"></div>
+<script>
+$('#demo').pagination({
+    dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 50],
+    pageSize: 5,
+    showPageNumbers: false,
+    showNavigator: true,
+    callback: function(data, pagination) {
+        // template method of yourself
+        var html = template(data);
+        dataContainer.html(html);
+    }
+})
+</script>
 </body>
 </html>

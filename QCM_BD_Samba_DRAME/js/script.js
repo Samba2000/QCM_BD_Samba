@@ -13,8 +13,4 @@ function fileContentLoader(target, fileName, data={date:0}){
         const content = $('#content');
         fileContentLoader(content, 'connexion.php');
     })
-    $('.deconnexion').click(function(e){
-        if(e.target.id=='deconnexion'){
-          ('#container').load('php/connexion.php');
-        }
-      })
+    

@@ -66,8 +66,12 @@
       float: left;
       font-size: 28px;
     }
-    .content h2{
+    .haed a{
       margin-top: 1%;
+      padding-top: 0.5%;
+      padding-left: 0.5%;
+      width: 100px;
+      height: 30px;
       float: right;
       background-color: #0FD2ED;
       border-radius: 5px;
@@ -88,6 +92,19 @@
             color: orangered;
             border-bottom: 2px solid gold;
         }
+    .affichage{
+      background-color: gray; text-align: center; font-weight: bold; font-size: 30px; width: 700px; height: 50px; border-radius: 10px;
+    }
+    .affichag{
+      background-color: whitesmoke; text-align: center; font-weight: bold; font-size: 30px; width: 700px; height: 100px; border-radius: 10px;
+      padding-top: 4%;
+    }
+    .affich{
+      background-color: gray; text-align: center; font-weight: bold; font-size: 30px; width: 700px; height: 100px; border-radius: 10px;padding-top: 4%;
+    }
+    .affich input{
+      border-radius: 5px; height: 30px;
+    }
     @media screen and (max-width: 1160px){
       .body{
         display: block;
@@ -120,7 +137,7 @@
       .content h1{
         font-size: 13px;
       }
-      .content h2{
+     .haed a{
         font-size: 15px;
       }
     }
@@ -134,7 +151,7 @@
       .content h1{
         font-size: 12px;
       }
-      .content h2{
+     .haed a{
         font-size: 10px;
       }
     }
@@ -248,10 +265,10 @@
     }else if(e.target.id === 'meilleur'){
         $('#M').load('php/resultat.php');
     }
-});
-$(document).ready(function(){
-  ('#affiche').load('teste.php');
-});
+    });
+    $(document).ready(function(){
+      ('#affiche').load('teste.php');
+    });
   </script>
 </head>
 <body>
@@ -330,10 +347,10 @@ $(document).ready(function(){
                             
                             if($data[$i]['typeQuestion']=='simple')
                             {
-                              echo "Question ". $i.'/'.$_SESSION['nombre']."<br>";
-                              echo $data[$i]['question'].'<br>';
-                              echo $data[$i]['nbpoint']." pts <br>";
-                              echo $data[$i]['reponse'];                                          
+                              ?><div class="affichage"><?php echo "Question ". $i.'/'.$_SESSION['nombre'];?></div><?php
+                              ?><div class="affichage"><?php echo $data[$i]['question'];?></div><?php
+                              ?><div class="affichag"><?php echo "Nombre De Points ". $data[$i]['nbpoint']." pts";?></div><?php
+                              ?><div class="affich"><?php echo 'Reponse : <input type="text" name="reponse" id="reponse"'; ?></div><?php                                        
                               
                             }
                         }

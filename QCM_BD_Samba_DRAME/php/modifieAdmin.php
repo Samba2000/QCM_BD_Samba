@@ -10,8 +10,21 @@
             width: 100%;
         }
         td{
-			text-align: center;
-		  }
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          text-align: center;
+        }
+        .scroll{
+          max-height: 250px;
+          display: block;
+          overflow-y: auto;
+          font-size: 22.3px;
+        }
+        .scroll td, .scrool th{
+          text-align: center;
+        }
+        tr:nth-child(event){background-color: #181b2f}
+        tr:nth-child(odd){background-color: gray}
       .fort{
             margin-bottom: 2%; margin-left: 2%; margin-top: 1%; float: left;
         }
@@ -26,7 +39,7 @@
 </head>
 <body>
   <div class="cont">
-    <table border="5px">
+    <table border="5px" class="scroll">
       <thead>
         <tr>
           <th>ID_USER</th>
